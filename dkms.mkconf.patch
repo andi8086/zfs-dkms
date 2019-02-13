@@ -1,0 +1,60 @@
+diff --git a/scripts/dkms.mkconf b/scripts/dkms.mkconf
+index e1a49dca1..823139384 100755
+--- a/scripts/dkms.mkconf
++++ b/scripts/dkms.mkconf
+@@ -25,45 +25,7 @@ PACKAGE_CONFIG="${pkgcfg}"
+ PRE_BUILD="configure
+   --prefix=/usr
+   --with-config=kernel
+-  --with-linux=\$(
+-    case \`lsb_release -is\` in
+-      (Debian|Devuan)
+-        if [[ -e \${kernel_source_dir/%build/source} ]]
+-        then
+-          echo \${kernel_source_dir/%build/source}
+-        else
+-          # A kpkg exception for Proxmox 2.0
+-          echo \${kernel_source_dir}
+-        fi
+-      ;;
+-      (*)
+-        echo \${kernel_source_dir}
+-      ;;
+-    esac
+-  )
+-  --with-linux-obj=\${kernel_source_dir}
+-  \$(
+-    [[ -n \"\${ICP_ROOT}\" ]] && \\
+-    {
+-      echo --with-qat=\"\${ICP_ROOT}\"
+-    }
+-  )
+-  \$(
+-    [[ -r \${PACKAGE_CONFIG} ]] \\
+-    && source \${PACKAGE_CONFIG} \\
+-    && shopt -q -s extglob \\
+-    && \\
+-    {
+-      if [[ \${ZFS_DKMS_ENABLE_DEBUG,,} == @(y|yes) ]]
+-      then
+-        echo --enable-debug
+-      fi
+-      if [[ \${ZFS_DKMS_ENABLE_DEBUGINFO,,} == @(y|yes) ]]
+-      then
+-        echo --enable-debuginfo
+-      fi
+-    }
+-  )
++  --with-linux=\${kernel_source_dir}
+ "
+ POST_BUILD="scripts/dkms.postbuild
+   -n \${PACKAGE_NAME}
+@@ -74,7 +36,7 @@ POST_BUILD="scripts/dkms.postbuild
+ "
+ AUTOINSTALL="yes"
+ REMAKE_INITRD="no"
+-MAKE[0]="make"
++MAKE[0]="make -j $(( $(nproc) + 1 )) -C module/"
+ STRIP[0]="\$(
+   [[ -r \${PACKAGE_CONFIG} ]] \\
+   && source \${PACKAGE_CONFIG} \\
