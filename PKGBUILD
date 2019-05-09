@@ -1,5 +1,5 @@
 pkgname=zfs-dkms
-pkgver=0.8.0.rc3+85a1
+pkgver=0.8.0.rc4+b689de85
 pkgrel=1
 pkgdesc="Kernel modules for the Zettabyte File System."
 arch=('any')
@@ -8,7 +8,7 @@ license=('CDDL')
 makedepends=('git')
 provides=("${pkgname%-dkms}")
 
-source=("git+https://github.com/zfsonlinux/zfs.git#commit=85a150ce1e6d609cec814f9af28ce4f2aef312ab")
+source=("git+https://github.com/zfsonlinux/zfs.git#commit=b689de85e8c78b9dc03c1bd4c3ca0f4e75714e92")
 
 sha256sums=('SKIP')
 
