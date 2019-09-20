@@ -1,0 +1,13 @@
+diff --git a/META b/META
+index a93750eeb..6d46e2cfa 100644
+--- a/META
++++ b/META
+@@ -2,7 +2,7 @@ Meta:          1
+ Name:          zfs
+ Branch:        1.0
+ Version:       0.8.0
+-Release:       1
++Release:       282-gafc8f0a6f
+ Release-Tags:  relext
+ License:       CDDL
+ Author:        OpenZFS on Linux
