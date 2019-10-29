@@ -7,7 +7,7 @@ index a93750eeb..6d46e2cfa 100644
  Branch:        1.0
  Version:       0.8.0
 -Release:       1
-+Release:       282-gafc8f0a6f
++Release:       364_gd46f0deb0
  Release-Tags:  relext
  License:       CDDL
  Author:        OpenZFS on Linux
